@@ -1,5 +1,15 @@
 # CalendarTest
 
+In order to setup the app you will need to have installed NodeJS version >= 6.9.0.
+
+*First Step*: Run `npm install -g npm@3.10.10` to install the project NPM packages with the correct version of NPM. 
+
+*Second Step*: Run `npm install -g @angular/cli` to setup Angular-cli.
+
+*Third Step*: Run `npm install` to install project packages.
+
+*Final Step*: Follow the **Development server** section instruction 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
 ## Development server
