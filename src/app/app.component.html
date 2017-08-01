@@ -1,3 +1,69 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <header>
+    <div class="nav">
+      <h1 class="navbar-text">Calendar test</h1>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="form-ctn">
+        <form name="calendarForm" #calendarForm="ngForm" novalidate>
+          <div class="form-group">
+            <label>
+              Date:
+              <input type="text" class="form-control" name="date" placeholder="MM/dd/YYYY" [(ngModel)]="model.date" #dateEl="ngModel" appDateVal required/>
+            </label>
+            <div class="alert alert-danger" *ngIf="dateEl.errors && (dateEl.dirty || dateEl.touched)">
+              <p *ngIf="dateEl.errors.required">
+                The start date is required.
+              </p>
+              <p *ngIf="dateEl.errors.appDateVal">
+                Date is invalid.
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Number of days:
+              <input type="text" class="form-control" name="numDays" #numDaysEl="ngModel" placeholder="E.g: 9" [(ngModel)]="model.numDays" pattern="[0-9]+" maxlength="4" required/>
+            </label>
+            <div class="alert alert-danger" *ngIf="numDaysEl.errors && (numDaysEl.dirty || numDaysEl.touched)">
+              <p *ngIf="numDaysEl.errors.required">
+                The number of days is required.
+              </p>
+              <p *ngIf="numDaysEl.errors.pattern">
+                The number of days is invalid.
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Country Code:
+              <input type="text" class="form-control" name="countryCode" [(ngModel)]="model.countryCode" placeholder="E.g: US"/>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="calendar-ctn" [hidden]="!form.valid">
+        <ngb-datepicker
+          *ngFor = "let cal of totalCalRows; let aIndex = index"
+          [startDate] = "cal.startDate"
+          [displayMonths] = "cal.displayMonths"
+          [firstDayOfWeek] = "firstDayOfWeek"
+          [dayTemplate] = "dayT">
+        </ngb-datepicker>
+      </div>
+    </div>
+  </div>
+  <ng-template #dayT let-date="date" let-focused="focused">
+    <span class="custom-day"
+          [class.focused]="focused"
+          [class.range]="isInside(date) || isFrom(date) || isTo(date)"
+          [class.weekend]="isInside(date) && isWeekend(date)"
+          [class.disabled]="isOutRangeDate(date)"
+    >
+      {{ date.day }}
+    </span>
+  </ng-template>
+</div>
+

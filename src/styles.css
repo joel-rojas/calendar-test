@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+.custom-day.focused {
+  background-color: white;
+}
+.custom-day.range, .custom-day:hover {
+  background-color: green;
+  color: silver;
+}
+.custom-day.weekend {
+  background-color: yellow;
+  color: black;
+}
+.custom-day.holiday {
+  background-color: orange;
+  color: silver;
+}
+.custom-day.disabled {
+  opacity: 0;
+}
+
